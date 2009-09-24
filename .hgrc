@@ -1,0 +1,32 @@
+[ui]
+editor=vim
+merge=gvim -f '+next' '+execute "DirDiff" argv(0) argv(1)'
+username=Jorge Gajon <gajon@gajon.org>
+ignore=/home/gajon/.hgignore_global
+
+[web]
+allow_archive=bz2,gz,zip
+style=gitweb
+
+[diff]
+git=1
+
+[extensions]
+hgext.hgk=
+hgext.churn=
+hgext.extdiff=
+hgext.graphlog=
+hgext.mq=
+hgext.color=
+prompt=/home/gajon/Python/site-packages/hg-prompt/prompt.py
+
+[hgk]
+path=/home/gajon/Python/site-packages/mercurial_src/contrib/hgk
+vdiff=vimdiff
+
+[extdiff]
+cmd.vimdiff = gvim
+opts.vimdiff = -f '+next' '+execute "DirDiff" argv(0) argv(1)'
+
+cmd.kdiff3 = kdiff3
+
