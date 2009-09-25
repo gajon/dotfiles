@@ -6,7 +6,7 @@
 # This setting controls the top directory which MPD will search to discover the
 # available audio files and add them to the daemon's online database.
 #
-music_directory			"~/Stuff/Music"
+music_directory			"~/Music"
 #
 # This setting sets the MPD internal playlist directory. The purpose of this
 # directory is storage for playlists created by MPD. The server will use 

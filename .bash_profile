@@ -1,7 +1,8 @@
 # BASH OPTIONS & UTILS
 # ---------------------------
 export EDITOR=vim
-export PATH=${HOME}/Clojure:${HOME}/Python/site-packages/django/bin:${PATH}
+export PATH=${HOME}/Clojure:${HOME}/jython2.5.0:${HOME}/Python/site-packages/django/bin:${PATH}
+export INPUTRC=${HOME}/.inputrc
 
 # Aliases.
 alias grep="grep --color=auto"
