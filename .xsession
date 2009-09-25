@@ -20,4 +20,6 @@ xscreensaver -no-splash &
 # This is a symlink to an image.
 wmsetbg ~/.wallpaper
 
+./.ion3/trayion &
+
 exec ion3
