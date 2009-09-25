@@ -39,7 +39,7 @@ mod_statusbar.create{
     --
     --template="[ %date || load:% %>load || mail:% %>mail_new/%>mail_total ] %filler%systray",
     --template="[ %date || load: %05load_1min || mail: %02mail_new/%02mail_total ] %filler%systray",
-    template="[ %exec_date || %load || /home %exec_homefree || %netmon_kbsin/%netmon_kbsout (%netmon_avgin/%netmon_avgout) || vol: %exec_vol ] %exec_music %filler%systray",
+    template="[ %exec_date || %load || Mem: %mem_hused,%mem_hfree || /home %exec_homefree || %netmon_kbsin/%netmon_kbsout (%netmon_avgin/%netmon_avgout) || vol: %exec_vol ] %exec_music %filler%systray",
 }
 
 
@@ -124,12 +124,18 @@ mod_statusbar.launch_statusd{
 
         vol = {
             program = 'aumix -q|grep vol|sed "s/vol \\([0-9]*\\),.*/\\1%/"',
+            --program = 'amixer sget Master | tail -1 | sed "s/.*\\[\\([0-9]*%\\)\\].*/\\1/"',
             retry_delay = 1*1000,
             hint_regexp = {
                 important = {'5..', '6..', '7..'},
                 critical = {'8..', '9..', '1...',},
             },
         },
+
+        --wlan0link = {
+        --    program = 'grep wlan0 /proc/net/wireless|cut -f 6 -d\\ |sed "s/\\([0-9]*\\).*/\\1%/"',
+        --    retry_delay = 5*1000,
+        --},
     },
 
     netmon = {
@@ -154,5 +160,11 @@ mod_statusbar.launch_statusd{
         }
     },
 
+    mem = {
+        update_interval = 10*1000,
+        free_alarm = 25,
+        used_alarm = 65,
+        units = "m"
+    },
 }
 
