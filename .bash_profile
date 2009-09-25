@@ -104,11 +104,17 @@ GRAYBG="\e[40m"
 
 # Taken and modified from http://stevelosh.com/projects/hg-prompt/
 hg_ps1() {
-hg prompt "\n${GRAYBG}${WHITE1}HG ${BLACKBG}${WHITE}{root|basename} \
+  # Since there's a Mercurial repository (my dotfiles) sitting right under
+  # my $HOME folder, anytime I'm on any non HG managed folder the hg prompt
+  # would appear. This test avoids that.
+  branch=`hg root 2> /dev/null`
+  if [ "x${branch}" != "x${HOME}" ]; then
+    hg prompt "\n${GRAYBG}${WHITE1}HG ${BLACKBG}${WHITE}{root|basename} \
 ${CYAN}{branch} \
 ${GREEN}r:{rev}{${GREEN1} [merge:{rev|merge}]} \
 ${RED}{{status}}\
 {${ORANGE}not-tip{update}}${WHITE}: " 2> /dev/null
+  fi
 }
 
 render_ps1() {
