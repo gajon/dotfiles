@@ -15,7 +15,8 @@ test -f $userresources && xrdb -merge $userresources
 test -f $usermodmap && xmodmap $usermodmap
 
 mpd &
-xscreensaver -no-splash &
+scmpc
+xscreensaver -no-splash -no-capture-stderr &
 
 # This is a symlink to an image.
 wmsetbg ~/.wallpaper
