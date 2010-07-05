@@ -11,3 +11,7 @@ set blink-matching-paren on
 $if clj
 	set comment-begin ;
 $endif
+
+$if sbcl
+	set comment-begin ;
+$endif

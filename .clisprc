@@ -1,0 +1,7 @@
+;; vim: set ft=lisp:
+;; http://common-lisp.net/project/asdf-install/tutorial/setup.html
+
+#-:asdf (load "/home/gajon/.clisp/asdf")
+(pushnew "/home/gajon/.asdf-install-dir/systems/" asdf:*central-registry* :test #'equal)
+
+#-:asdf-install (asdf:operate 'asdf:load-op :asdf-install)
