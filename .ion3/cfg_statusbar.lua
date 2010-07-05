@@ -98,8 +98,8 @@ mod_statusbar.launch_statusd{
             program = 'date "+%a %Y-%m-%d %H:%M"',
             retry_delay = 1000,
             hint_regexp = {
-                important = {'14:..$',},
-                critical = {'15:..$'},
+                important = {'23:..$', '00:..$'},
+                critical = '0[1234567]:..$',
             },
         },
 
@@ -110,7 +110,7 @@ mod_statusbar.launch_statusd{
         },
 
         homefree = {
-            program = 'df|grep sdb3|sed "s/.*\\(..%\\).*/\\1/"',
+            program = 'df|grep sda6|sed "s/.*\\(..%\\).*/\\1/"',
             retry_delay = 60 * 1000,
             meter_length = 4,
             hint_regexp = {

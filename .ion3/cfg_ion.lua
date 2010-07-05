@@ -9,12 +9,13 @@
 -- Set default modifiers. Alt should usually be mapped to Mod1 on
 -- XFree86-based systems. The flying window keys are probably Mod3
 -- or Mod4; see the output of 'xmodmap'.
---META="Mod1+"
+META="Mod4+"
 --ALTMETA=""
 
 -- Terminal emulator
-XTERM="rxvt -ls +sb -rv -sl 1500 -fn -xos4-terminus-medium-r-normal-*-14-140-72-72-c-80-iso8859-1"
---XTERM="Terminal"
+--XTERM="rxvt -ls +sb -rv -sl 1500 -fn -xos4-terminus-medium-r-normal-*-14-140-72-72-c-80-iso8859-1"
+--XTERM="xterm -ls +sb -rv -sl 1500 -fn -xos4-terminus-medium-r-normal-*-14-140-72-72-c-80-iso10646-1"
+XTERM="Terminal"
 
 -- Some basic settings
 ioncore.set{

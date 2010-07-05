@@ -61,16 +61,16 @@ defbindings("WScreen", {
     kpress(META.."Shift+comma", "ioncore.goto_prev_screen()"),
     kpress(META.."Shift+period", "ioncore.goto_next_screen()"),
     
-    bdoc("Create a new workspace of chosen default type."),
-    kpress(META.."F9", "ioncore.create_ws(_)"),
+    --bdoc("Create a new workspace of chosen default type."),
+    --kpress(META.."F9", "ioncore.create_ws(_)"),
     
     bdoc("Lock screen."),
     --kpress(META.."F10", "ioncore.exec_on(_, 'gnome-screensaver-command --lock')"),
     kpress(META.."F10", "ioncore.exec_on(_, 'xscreensaver-command --lock')"),
     
-    bdoc("Launch Konqueror."),
+    --bdoc("Launch Konqueror."),
     --kpress(ALTMETA.."F10", "ioncore.exec_on(_, 'nautilus --no-desktop --browser')"),
-    kpress(ALTMETA.."F10", "ioncore.exec_on(_, 'konqueror')"),
+    --kpress(ALTMETA.."F10", "ioncore.exec_on(_, 'konqueror')"),
     
     bdoc("Display the main menu."),
     kpress(META.."F12", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
@@ -86,7 +86,8 @@ defbindings("WScreen", {
     -- the managing group of that window. The right/left directions are
     -- used instead of next/prev, because they work better in conjunction
     -- with tilings.
-    kpress(META.."Tab", "ioncore.goto_next(_chld, 'right')", 
+    --kpress(META.."Tab", "ioncore.goto_next(_chld, 'right')", 
+    kpress("Mod1+Tab", "ioncore.goto_next(_chld, 'right')", 
            "_chld:non-nil"),
     submap(META.."K", { 
         bdoc("Backward-circulate focus."),
@@ -200,7 +201,7 @@ defbindings("WMPlex.toplevel", {
     --       "mod_query.query_runfile(_, 'run-mailcap --action=view')"),
 
     bdoc("Query for workspace to go to or create a new one."),
-    kpress(ALTMETA.."F9", "mod_query.query_workspace(_)"),
+    kpress(META.."F9", "mod_query.query_workspace(_)"),
 
     bdoc("Query for a client window to go to."),
     kpress(META.."G", "mod_query.query_gotoclient(_)"),
