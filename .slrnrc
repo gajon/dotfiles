@@ -24,7 +24,7 @@ set realname "Jorge Gajon"
 set organization "Gajon"
 
 % The name of your signature file.  If "", no signature is added.
-%set signature ".signature"
+set signature ".signature"
 
 %
 %% 2. Server specific settings
@@ -91,6 +91,7 @@ set generate_message_id 0
 %set editor_command "jed '%s' -g %d -tmp"
 %set editor_command "vim -c %d '%s'"
 set editor_command "vim '+set tw=72 fileencoding=latin1' +%d '%s'"
+%set editor_command "gvim -f '+set tw=72 fileencoding=latin1' +%d '%s'"
 
 % You can have separate commands for editing posts, mail, and score files.
 %set mail_editor_command "jed '%s' -g %d -tmp --mail-mode"
@@ -182,7 +183,8 @@ set postpone_directory ".News/postponed"
 
 % Character set used for the display or terminal; valid values include:
 %   utf8, iso-8859-1, ibm850, ibm852, koi8,
-charset display iso-8859-1
+charset display utf8
+charset editor iso-8859-1
 
 % the character set used for outgoing articles
 charset outgoing "iso-8859-1"
@@ -218,7 +220,7 @@ set sorting_method 11
 % You can also match all headers starting with a given string and exclude
 % specific headers by preceding them with "!" (e.g. use "X-,!X-Trace:" to
 % display all the "X-"headers except "X-Trace:").
-visible_headers "From:,Subject:,Newsgroups:,Followup-To:,Reply-To:,User-Agent:,Date:,Message-ID:"
+visible_headers "From:,Subject:,Newsgroups:,Followup-To:,Reply-To:,User-Agent:,Date:,Message-ID:,Organization:"
 
 % If non-zero, #v+ and #v- will be interpreted as markers of verbatim lines.
 %set process_verbatim_marks 1
@@ -425,7 +427,7 @@ setkey group help             "?"      % Display a help screen
 % General movement:
 setkey article next                    "n"  % next unread article
 setkey article previous                "p"  % previous unread article
-setkey article skip_to_next_group      "N"  % go to the next group
+%setkey article skip_to_next_group      "N"  % go to the next group
 setkey article skip_to_next_group      "<Esc><Right>"
 setkey article skip_to_previous_group  "<Esc><Left>"  % go to the previous group
 setkey article next_high_score         "!"  % next article with high score
