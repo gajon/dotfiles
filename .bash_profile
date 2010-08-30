@@ -1,8 +1,9 @@
 # BASH OPTIONS & UTILS
 # ---------------------------
 export EDITOR=vim
-export PATH=${HOME}/Clojure:${HOME}/jython2.5.0:${HOME}/Python/site-packages/django/bin:${PATH}
+export PATH=${HOME}/Clojure:${HOME}/jython2.5.0:${HOME}/Python/site-packages/django/bin:${PATH}:${HOME}/.LispWorksPersonal/
 export INPUTRC=${HOME}/.inputrc
+
 
 # Aliases.
 alias grep="grep --color=auto"
@@ -10,8 +11,8 @@ alias mv="mv -i"
 alias cp="cp -i"
 alias ll="ls --group-directories-first -lhG"
 alias lt="ls -lhtr"
-alias rxvt16="rxvt -ls +sb -sl 1000 -rv -fn -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso8859-1"
-alias rxvt20="rxvt -ls -rv +sb -sl 1500 -fn -xos4-terminus-medium-r-normal-*-20-200-72-72-c-100-iso8859-1"
+alias rxvt16="LC_CTYPE=en_US rxvt -ls +sb -sl 1000 -rv -fn -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso8859-1"
+alias rxvt20="LC_CTYPE=en_US rxvt -ls -rv +sb -sl 1500 -fn -xos4-terminus-medium-r-normal-*-20-200-72-72-c-100-iso8859-1"
 alias mq='hg -R $(hg root)/.hg/patches'
 
 # History control.
@@ -32,7 +33,7 @@ shopt -s histverify
 export PYTHONPATH="${HOME}/Python/:${HOME}/Python/site-packages/"
 export PYTHONDOCS="/usr/doc/python-2.5.2/html/Python-Docs-2.5.2/"
 export HGMERGE="gvimdiff --nofork"
-#export LIMPRUNTIME=${HOME}/.limp/latest
+export LIMPRUNTIME=${HOME}/.vim/limp/latest
 export WNHOME=/usr
 export RLWRAP_HOME=${HOME}/.rlwrap/
 export NNTPSERVER="news.eternal-september.org"

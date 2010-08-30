@@ -18,6 +18,8 @@ hgext.extdiff=
 hgext.graphlog=
 hgext.mq=
 hgext.color=
+hgext.patchbomb=
+#http://bitbucket.org/sjl/hg-prompt/
 prompt=/home/gajon/Python/site-packages/hg-prompt/prompt.py
 
 [hgk]
