@@ -126,3 +126,7 @@ render_ps1() {
 PROMPT_COMMAND="$(echo "$PROMPT_COMMAND"|sed -e's/PS1="`render_ps1`";//g')"
 PROMPT_COMMAND='PS1="`render_ps1`";'"$PROMPT_COMMAND"
 
+
+# Bash DirB
+# http://www.linuxjournal.com/article/10585
+source ~/.bashDirB
