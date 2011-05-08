@@ -21,7 +21,7 @@ pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 # termcapinfo  * '' 'hs:ts=\E_:fs=\E\\:ds=\E_\E\\'
 
 # make the shell in every window a login shell
-#shell -$SHELL
+shell -$SHELL
 
 # autoaka testing
 # shellaka '> |tcsh'
@@ -30,7 +30,7 @@ pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 # set every new windows hardstatus line to somenthing descriptive
 # defhstatus "screen: ^En (^Et)"
 
-defscrollback 1000
+defscrollback 2000
 
 # don't kill window after the process died
 # zombie "^["
@@ -119,8 +119,8 @@ bind ^h
 bind h
 #make them better
 bind 'K' kill
-bind 'I' login on
-bind 'O' login off
+#bind 'I' login on
+#bind 'O' login off
 bind '}' history
 
 # Yet another hack:
@@ -143,10 +143,23 @@ bind ^] paste [.]
 # hardstatus alwaysignore
 # hardstatus alwayslastline "%Lw"
 
-# bind = resize =
-# bind + resize +1
-# bind - resize -1
-# bind _ resize max
+hardstatus on
+hardstatus alwayslastline
+#hardstatus string '%{= dK}%-Lw%{= dW}%50>%n%f* %t%{= dK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+hardstatus string '%{= dK}%-Lw%{= dW}%50>%n%f* %t%{= dK}%+Lw%< %{= kG}%-=(%h) %Y-%m-%d %c%{-}'
+
+screen -t database 5
+#stuff "clear\012"
+screen -t logs 4
+screen -t consl 3
+screen -t tests 2
+screen -t bash 1
+screen -t server 0
+
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
 #
 # defnonblock 1
 # blankerprg rain -d 100
