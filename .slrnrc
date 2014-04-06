@@ -108,7 +108,8 @@ set editor_command "vim '+set tw=72 fileencoding=latin1' +%d '%s'"
 % WWW browser to use. Xbrowser is used when the DISPLAY environment variable
 % is set; non_Xbrowser otherwise.
 set non_Xbrowser "lynx '%s'"
-set Xbrowser "firefox '%s' &"
+%set Xbrowser "firefox '%s' &"
+set Xbrowser "open %s"
 
 % Command to use for printing
 % Note: On Win32, this variable defines the name of the printer queue to use.
@@ -300,7 +301,7 @@ color neg_score		"green"		"black"
 color pos_score		"blue"		"black"
 color high_score	"red"		"black"	"bold"
 color italicstext	"magenta"	"black"	"bold"
-color menu		"yellow"	"blue"
+color menu			"white"		"blue"
 color menu_press	"lightgray"	"yellow"
 color message		"lightgray"	"black"
 color normal		"lightgray"	"black"
@@ -316,7 +317,7 @@ color quotes7		"brown"		"black"
 color response_char	"green"		"black"	"bold"
 color signature		"red"		"black"
 color selection		"yellow"	"blue"	"bold"
-color status		"yellow"	"blue"
+color status		"white"		"blue"
 color subject		"lightgray"	"black"
 color thread_number	"lightgray"	"black"	"bold"
 color tilde		"green"		"black"	"bold"

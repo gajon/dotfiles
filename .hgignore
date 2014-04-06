@@ -3,4 +3,9 @@
 # .hgignore_global as referenced by [ui]'s ignore setting.
 
 syntax:glob
-*
+.ssh
+.DirB
+.News
+.bash_history
+.gnupg
+.vim

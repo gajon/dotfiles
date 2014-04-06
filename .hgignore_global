@@ -5,6 +5,7 @@ syntax: glob
 .svn*
 *.svn*
 *.fasl
+.DS_Store
 
 
 
