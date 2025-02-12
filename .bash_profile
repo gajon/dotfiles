@@ -4,9 +4,11 @@
 export EDITOR='vim -f'
 export PATH=${HOME}/.local/bin:${PATH}
 export INPUTRC=${HOME}/.inputrc
-export HOMEBREW_GITHUB_API_TOKEN=
 export LC_ALL=en_US.UTF-8
-export NPM_AUTH_TOKEN=
+
+if [ -f ${HOME}/.private_env_vars ]; then
+    . ${HOME}/.private_env_vars
+fi
 
 GPG_TTY=$(tty)
 export GPG_TTY
