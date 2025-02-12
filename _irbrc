@@ -1,0 +1,50 @@
+# Disable 'mutliline' support due to poor pasting performance
+# see https://github.com/ruby/irb/issues/43
+#IRB.conf[:USE_MULTILINE] = false
+
+
+# begin
+#   require 'irbtools'
+# rescue LoadError => err
+#   warn "Couldn't load irbtools: #{err}"
+# end
+
+#begin
+  ## load wirble
+  #require 'wirble'
+
+  ## start wirble (with color)
+  #Wirble.init
+  #Wirble.colorize
+#rescue LoadError => err
+  #warn "Couldn't load Wirble: #{err}"
+#end
+
+# begin
+#   require 'hirb'
+#   Hirb.enable :output => {
+#     "ActiveRecord::Base" => {
+#       :class => :auto_table,
+#       :ancestor => true,
+#       #:options => {:vertical => true}
+#     }
+#   }
+# rescue LoadError => err
+#   warn "Couldn't load Hirb: #{err}"
+# end
+
+
+#if defined? Rails
+  #logger = Logger.new(STDOUT)
+  #ActiveRecord::Base.logger = logger
+  #ActiveResource::Base.logger = logger
+#end
+
+
+#http://stackoverflow.com/questions/123494/whats-your-favourite-irb-trick
+#class Object
+  ## Return only the methods not present on basic objects
+  #def _interesting_methods
+    #(self.methods - Object.new.methods).sort
+  #end
+#end
