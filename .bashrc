@@ -5,23 +5,20 @@ alias cp="cp -i"
 alias ls="ls -FbTG"
 alias ll="ls  -lho"
 alias lt="ls -lhtr"
-#alias rxvt16="LC_CTYPE=en_US rxvt -ls +sb -sl 1000 -rv -fn -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso8859-1"
-#alias rxvt20="LC_CTYPE=en_US rxvt -ls -rv +sb -sl 1500 -fn -xos4-terminus-medium-r-normal-*-20-200-72-72-c-100-iso8859-1"
 alias mq='hg -R $(hg root)/.hg/patches'
 alias tree="tree -A -C"
-alias mplayer="open -a 'MPlayerX'"
 alias iphonesim="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
 
 alias b="bundle exec"
 alias gl="git log"
 alias gs="git status"
-alias gh="git hist"
+alias gh="git h"
 alias gha="git ha"
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gai="git add -i"
 alias gpo="git push origin master"
-alias gcm="git commit -m"
+alias gcm="git commit -S -m"
 
 
 #alias gs='git status '
@@ -52,7 +49,7 @@ shopt -s histverify
 bind 'Control-p: history-search-backward'
 bind -m vi-insert 'Control-p: history-search-backward'
 bind -m vi-command 'Control-p: history-search-backward'
- 
+
 # Ctrl-n: search in next history
 bind 'Control-n: history-search-forward'
 bind -m vi-insert 'Control-n: history-search-forward'
@@ -147,10 +144,9 @@ render_ps1() {
 source ~/.bashDirB
 
 
-alias fortune="/usr/local/bin/fortune -a 70% ~/.fortunes 30% all"
-echo; fortune; echo
+#alias fortune="/usr/local/bin/fortune -a 70% ~/.fortunes 30% all"
+#echo; fortune; echo
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+complete -C aws_completer aws
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

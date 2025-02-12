@@ -1,0 +1,144 @@
+# Consult the FAQ at https://zsh.sourceforge.io/FAQ/
+
+
+# --- BASIC OPTS (man zshoptions) ----------------------------------------------
+
+setopt auto_cd
+setopt no_case_glob
+setopt no_beep
+setopt interactive_comments
+
+
+# --- HISTORY ------------------------------------------------------------------
+
+HISTSIZE=10000
+SAVEHIST=9000
+
+setopt share_history
+setopt append_history
+
+setopt hist_expire_dups_first # Expire duplicates first
+setopt hist_ignore_dups       # Do not store duplications
+setopt hist_find_no_dups      # Ignore duplicates when searching
+setopt hist_reduce_blanks     # Remove blank lines from history
+setopt hist_ignore_space      # Ignore lines starting with space
+setopt hist_verify            # Don't immediately execute after substituting history line
+setopt extended_history       # Save date and execution time for each history line
+
+
+# --- ALIASES ------------------------------------------------------------------
+
+alias grep="grep --color=auto"
+alias mv="mv -i"
+alias cp="cp -i"
+alias ls="ls -FbTG"
+alias ll="ls -lho"
+alias lt="ls -lhtr"
+alias tree="tree -A -C"
+
+alias b="bundle exec"
+alias gl="git log"
+alias gs="git status"
+alias gh="git h"
+alias gha="git ha"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gai="git add -i"
+alias gpo="git push origin master"
+alias gcm="git commit -m"
+
+# --- SITE-FUNCTIONS -----------------------------------------------------------
+
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
+# My own functions
+[[ $fpath = *gajon* ]] || fpath=(~/site-functions $fpath)
+autoload -U ${fpath[1]}/*(:t)
+
+
+# --- ASDF ---------------------------------------------------------------------
+# . /opt/homebrew/opt/asdf/libexec/asdf.sh
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# --- AUTOCOMPLETION -----------------------------------------------------------
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle :compinstall filename '/Users/gajon/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# load bashcompinit for some old bash completions
+autoload bashcompinit && bashcompinit
+
+
+# --- NAMED DIRECTORIES --------------------------------------------------------
+
+# Easily cd into usual projects.
+# cdpath=(. ~/src ~/Ruby)
+#
+# Alternative: named directories
+hash -d briq=~/Ruby/briq
+hash -d kafinai=~/Ruby/kafinai
+hash -d finder=~/src/finder
+hash -d doximity=~/src/doximity
+
+
+# --- EDITOR -------------------------------------------------------------------
+
+bindkey -v # vi mode
+
+# Edit the buffer in $EDITOR
+autoload -U edit-command-line;
+zle -N edit-command-line;
+bindkey '^Fc' edit-command-line;
+
+# --- PROMPT -------------------------------------------------------------------
+
+# load color definitions so we can use them in PS1
+autoload colors && colors
+
+# Default prompt
+# PS1="%n@%m %1~ %# "
+# RPS1='%D{%H:%M:%S}' # Right side prompt
+PS1="%{${fg[green]}%}[%h]%{${fg[yellow]}%}[%D{%H:%M}]%{${fg[blue]}%}[%~] %{${fg[default]}%}%# "
+
+
+# --- DISPLAY DIRECTORY IN TITLE BAR -------------------------------------------
+
+chpwd() {
+  [[ -t 1 ]] || return
+  case $TERM in
+    sun-cmd) print -Pn "\e]l%~\e\\"
+      ;;
+    *xterm*|rxvt|(dt|k|E)term) print -Pn "\e]2;%~\a"
+      ;;
+  esac
+}
+chpwd
+
+
+# --- OTHER --------------------------------------------------------------------
+
+export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
+eval "$(tmuxifier init -)"
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
+
+alias fortune="/opt/homebrew/bin/fortune -a 70% ~/.fortunes 30% all"
+echo; fortune; echo;
+
+eval TWILIO_AC_ZSH_SETUP_PATH=/Users/gajon/.twilio-cli/autocomplete/zsh_setup && test -f $TWILIO_AC_ZSH_SETUP_PATH && source $TWILIO_AC_ZSH_SETUP_PATH; # twilio autocomplete setup
+
+# Created by `pipx` on 2025-01-05 21:18:38
+export PATH="$PATH:/Users/gajon/.local/bin"

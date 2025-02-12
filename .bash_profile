@@ -2,15 +2,24 @@
 # ---------------------------
 #export EDITOR='mvim -f -c "au VimLeave * !open -a Terminal"'
 export EDITOR='vim -f'
-export PATH=/usr/local/sbin:/usr/local/bin:${HOME}/.local/bin:${PATH}
-export PATH=/usr/local/Cellar/smlnj/110.75/libexec/bin:${PATH}
+export PATH=${HOME}/.local/bin:${PATH}
 export INPUTRC=${HOME}/.inputrc
+export HOMEBREW_GITHUB_API_TOKEN=
+export LC_ALL=en_US.UTF-8
+export NPM_AUTH_TOKEN=
+
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# Use the silver searcher for FZF
+# https://github.com/junegunn/fzf
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # History control.
 export HISTCONTROL=ignorespace:ignoredups
 export HISTFILESIZE=2000
 export HISTSIZE=2000
-export URBIT_HOME=${HOME}/urbit/urb
 
 # OTHER OPTIONS
 # ---------------------------
@@ -38,4 +47,3 @@ case "$-" in
         fi
         ;;
 esac
-
