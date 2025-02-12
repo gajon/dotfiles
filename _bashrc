@@ -139,10 +139,6 @@ render_ps1() {
 #. /etc/profile.d/coreutils-dircolors.sh
 #. /etc/profile.d/mc.sh
 
-# Bash DirB
-# http://www.linuxjournal.com/article/10585
-source ~/.bashDirB
-
 
 #alias fortune="/usr/local/bin/fortune -a 70% ~/.fortunes 30% all"
 #echo; fortune; echo
