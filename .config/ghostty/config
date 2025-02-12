@@ -1,0 +1,37 @@
+# ghostty +show-config --default --docs | nvim
+
+theme = tokyonight_moon
+font-size = 19
+font-family = TX-02
+font-family-italic = JetBrains Mono
+font-family-bold-italic = JetBrains Mono
+font-thicken = false
+# minimum-contrast = 1.1
+
+# green: #9ece6a, blue: #64a1f4, red: #f7768e
+cursor-color = #64a1f4
+cursor-opacity = 1
+
+window-height = 30
+window-width = 80
+
+mouse-hide-while-typing = false
+
+# background-opacity = 0.85
+# background-blur-radius = 15
+
+# Workaround bug https://github.com/ghostty-org/ghostty/discussions/5018
+keybind = ctrl+left_bracket=text:\x1b
+
+# Quick terminal
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+# keybind = ctrl+shift+escape=toggle_quick_terminal
+quick-terminal-animation-duration = 0.2
+
+
+copy-on-select = false
+
+
+# Search Scrollback https://github.com/ghostty-org/ghostty/issues/189
+keybind = super+shift+j=write_screen_file:paste
+keybind = super+alt+shift+j=write_screen_file:open
