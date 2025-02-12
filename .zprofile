@@ -2,14 +2,14 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export EDITOR='vim -f'
-export HOMEBREW_GITHUB_API_TOKEN=
-export NPM_AUTH_TOKEN=
 export GPG_TTY=$TTY
 export PATH="$PATH:$HOME/src/utility-scripts"
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 
-export GITHUB_TOKEN=
+if [ -f $HOME/.private_env_vars ]; then
+  source $HOME/.private_env_vars
+fi
 
 # https://github.com/folke/tokyonight.nvim/tree/main/extras/fzf
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
