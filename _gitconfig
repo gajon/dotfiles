@@ -1,6 +1,7 @@
 [user]
 	name = Jorge Gajon
 	email = gajon@gajon.org
+	signingkey = 23C714E9F25195F1
 
 
 [alias]
@@ -9,8 +10,7 @@
 	st = status
 	br = branch
 	ff = merge --ff-only
-	;h   = log --pretty=format:'[%ad] %h %d %s (%an)' --graph --abbrev-commit --date=short
-	hist = log --pretty=format:'%Creset%C(red bold)[%ad] %C(blue bold)%h %Creset%C(magenta bold)%d %Creset%s %C(green bold)(%an)%Creset' --graph --abbrev-commit --date=short
+	h    = log --pretty=format:'%Creset%C(red bold)[%ad] %C(blue bold)%h %Creset%C(magenta bold)%d %Creset%s %C(green bold)(%an)%Creset' --graph --abbrev-commit --date=short
 	ha   = log --pretty=format:'%Creset%C(red bold)[%ad] %C(blue bold)%h %Creset%C(magenta bold)%d %Creset%s %C(green bold)(%an)%Creset' --graph --all --abbrev-commit --date=short
 	type = cat-file -t
 	dump = cat-file -p
@@ -21,12 +21,6 @@
 
 [core]
 	excludesfile = /Users/gajon/.gitignore
-
-[diff]
-	tool = vimdiff
-
-[difftool]
-	;prompt = false
 
 [merge]
 	tool = vimdiff
@@ -39,3 +33,15 @@
 	# for a diff of only LOCAL with REMOTE
 [push]
 	default = simple
+
+[transfer]
+	fsckObjects = true
+
+[commit]
+	gpgsign = true
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
