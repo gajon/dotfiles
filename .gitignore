@@ -1,4 +1,7 @@
 .bash_history
+.netrc
+.News
+.npmrc
 .psql_history
-.zsh_history
 .rlwrap/*_history
+.zsh_history
