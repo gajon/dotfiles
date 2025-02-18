@@ -163,17 +163,19 @@ vim.cmd([[
 function! RunTests(filename)
     " Write all buffers and run tests for the given filename
     :wa
+    let dox_do = (exists('$DOX_CLOUD_PERSONAL_INSTANCE') && $DOX_CLOUD_PERSONAL_INSTANCE != '') ? 'dox-do ' : ''
+
     if match(a:filename, '\.feature$') != -1
         exec ":split term://script/features " . a:filename
     else
         if filereadable("script/test")
-            exec ":split term://script/test " . a:filename
+            exec ":split term://". dox_do . "script/test " . a:filename
         elseif filereadable("bin/rspec")
-            exec ":split term://time ./bin/rspec " . a:filename
+            exec ":split term://time " . dox_do . "./bin/rspec " . a:filename
         elseif filereadable("Gemfile")
-            exec ":split term://time bundle exec rspec " . a:filename
+            exec ":split term://time " . dox_do . "bundle exec rspec " . a:filename
         else
-            exec ":split term://time rspec " . a:filename
+            exec ":split term://time " . dox_do . "rspec " . a:filename
         end
     end
 endfunction
