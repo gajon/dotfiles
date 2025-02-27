@@ -50,6 +50,11 @@ vim.cmd([[
     \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
 ]])
 
+-- jbuilder syntax highlighting
+vim.cmd([[
+  autocmd BufNewFile,BufRead *.json.jbuilder set ft=ruby
+]])
+
 --------------------------------------------------
 -- ALE options
 vim.g.ale_lint_delay = 5000
@@ -249,6 +254,7 @@ require "paq" {
     -- { 'vlime/vlime' }, installed manually, see `~/.config/nvim/vlime/` and `vim.opt.runtimepath` above.
     { 'kovisoft/paredit' },
     { 'kdheepak/lazygit.nvim' },
+    { 'kchmck/vim-coffee-script' },
 
     -- Colorschemes
     { "overcache/NeoSolarized", opt = true },
