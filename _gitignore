@@ -1,4 +1,6 @@
 .*.swp
 .DS_Store
+.plandex-v2
+.aider.*
 Session.vim
 /tags

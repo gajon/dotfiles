@@ -130,7 +130,6 @@ chpwd
 # --- OTHER --------------------------------------------------------------------
 
 export TMUXIFIER_LAYOUT_PATH="$HOME/.tmux-layouts"
-eval "$(tmuxifier init -)"
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)"
