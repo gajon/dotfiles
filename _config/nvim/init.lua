@@ -168,7 +168,8 @@ vim.cmd([[
 function! RunTests(filename)
     " Write all buffers and run tests for the given filename
     :wa
-    let dox_do = (exists('$DOX_CLOUD_PERSONAL_INSTANCE') && $DOX_CLOUD_PERSONAL_INSTANCE != '') ? 'dox-do ' : ''
+    " let dox_do = (exists('$DOX_CLOUD_PERSONAL_INSTANCE') && $DOX_CLOUD_PERSONAL_INSTANCE != '') ? 'dox-do ' : ''
+    let dox_do = ((exists('$DOX_DC_CONTAINER_HOST') && $DOX_DC_CONTAINER_HOST == 'local') || (exists('$DOX_CLOUD_PERSONAL_INSTANCE') && $DOX_CLOUD_PERSONAL_INSTANCE != '')) ? 'dox-do ' : ''
 
     if match(a:filename, '\.feature$') != -1
         exec ":split term://script/features " . a:filename
@@ -255,6 +256,7 @@ require "paq" {
     { 'kovisoft/paredit' },
     { 'kdheepak/lazygit.nvim' },
     { 'kchmck/vim-coffee-script' },
+    { 'AndrewRadev/vim-eco' },
 
     -- Colorschemes
     { "overcache/NeoSolarized", opt = true },
@@ -272,7 +274,7 @@ nmap('<leader>gg', ':LazyGit<CR>')
 -- TELESCOPE
 require("telescope").setup{
     defaults = {
-        file_ignore_patterns = { "^vendor/" },
+        file_ignore_patterns = { "^vendor/cache", "^vendor/bundle" },
     }
 }
 
