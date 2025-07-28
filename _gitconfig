@@ -3,6 +3,9 @@
 	email = gajon@gajon.org
 	signingkey = 0ED6C6AA3AB86E90
 
+[include]
+        path = /Users/gajon/.dotfiles/delta.themes.gitconfig
+
 
 [alias]
 	co = checkout
@@ -21,6 +24,7 @@
 
 [core]
 	excludesfile = /Users/gajon/.gitignore
+	pager = delta
 
 [merge]
 	tool = vimdiff
@@ -31,6 +35,10 @@
 	#
 	# or use: gvim -f -c "sp $BASE" -c "sp $LOCAL" -c "vert diffsplit $REMOTE" -c "set diffopt+=iwhite" $MERGED
 	# for a diff of only LOCAL with REMOTE
+
+	# for delta
+	conflictstyle = zdiff3
+
 [push]
 	default = simple
 
@@ -45,3 +53,16 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	features = arctic-fox # delta --show-themes
+	line-numbers
+	navigate = true    # use n and N to move between diff sections
+	side-by-side = false
+	
+	# delta detects terminal colors automatically; set one of these to disable auto-detection
+	# dark = true
+	# light = true
