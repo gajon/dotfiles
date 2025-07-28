@@ -1,6 +1,19 @@
 # ghostty +show-config --default --docs | nvim
+# cmd+shift+, to reload
 
-theme = tokyonight_moon
+# To list the themes
+# ghostty +list-themes
+#
+# theme = Borland
+# theme = Builtin Solarized Light
+theme = Everforest Dark - Hard
+# theme = GitHub-Light-Default
+# theme = gruvbox-material
+# theme = GruvboxDark
+# theme = Solarized Dark Higher Contrast
+# theme = tokyonight_moon
+# theme = Whimsy
+
 font-size = 19
 font-family = TX-02
 font-family-italic = JetBrains Mono
@@ -28,6 +41,7 @@ keybind = ctrl+left_bracket=text:\x1b
 # keybind = ctrl+shift+escape=toggle_quick_terminal
 quick-terminal-animation-duration = 0.2
 
+macos-option-as-alt = right
 
 copy-on-select = false
 
