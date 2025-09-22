@@ -6,12 +6,12 @@
 #
 # theme = Borland
 # theme = Builtin Solarized Light
-theme = Everforest Dark - Hard
-# theme = GitHub-Light-Default
-# theme = gruvbox-material
-# theme = GruvboxDark
+# theme = Everforest Dark   Hard
+# theme = GitHub Light Default
+# theme = Gruvbox Dark
 # theme = Solarized Dark Higher Contrast
-# theme = tokyonight_moon
+# theme = Solarized Osaka Night
+theme = TokyoNight Moon
 # theme = Whimsy
 
 font-size = 19
