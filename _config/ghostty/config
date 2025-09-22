@@ -49,3 +49,7 @@ copy-on-select = false
 # Search Scrollback https://github.com/ghostty-org/ghostty/issues/189
 keybind = super+shift+j=write_screen_file:paste
 keybind = super+alt+shift+j=write_screen_file:open
+
+# To enter newlines with Shift+Enter
+# https://github.com/anthropics/claude-code/issues/1282
+keybind = shift+enter=text:\n
