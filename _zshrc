@@ -115,7 +115,8 @@ autoload colors && colors
 # Default prompt
 # PS1="%n@%m %1~ %# "
 # RPS1='%D{%H:%M:%S}' # Right side prompt
-PS1="%{${fg[green]}%}[%h]%{${fg[yellow]}%}[%D{%H:%M}]%{${fg[blue]}%}[%~] %{${fg[default]}%}%# "
+# PS1="%{${fg[green]}%}[%h]%{${fg[yellow]}%}[%D{%H:%M}]%{${fg[blue]}%}[%~] %{${fg[default]}%}%# "
+PS1='%F{cyan}[%m]%f%F{blue}[%~]%f %# '
 
 
 # --- DISPLAY DIRECTORY IN TITLE BAR -------------------------------------------
