@@ -55,6 +55,26 @@ vim.cmd([[
   autocmd BufNewFile,BufRead *.json.jbuilder set ft=ruby
 ]])
 
+-- set default opts for Javascript
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "javascript",
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true
+  end,
+})
+
+-- set default opts for Vue
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "vue",
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true
+  end,
+})
+
 --------------------------------------------------
 -- ALE options
 vim.g.ale_lint_delay = 5000
