@@ -6,7 +6,7 @@
 #
 # theme = Borland
 # theme = Builtin Solarized Light
-# theme = Everforest Dark   Hard
+# theme = Everforest Dark Hard
 # theme = GitHub Light Default
 # theme = Gruvbox Dark
 # theme = Solarized Dark Higher Contrast
@@ -20,6 +20,15 @@ font-family-italic = JetBrains Mono
 font-family-bold-italic = JetBrains Mono
 font-thicken = false
 # minimum-contrast = 1.1
+
+# LIGATURES
+
+# Standard Ligatures – These are typographically necessary ligatures that prevent awkward collisions between letters.
+# font-feature = -liga
+# Discretionary Ligatures – optional stylistic ligatures used mainly in display typography
+font-feature = -dlig
+# Contextual Alternates – does not necessarily create ligatures. Instead, it changes a glyph depending on its neighbors
+font-feature = -calt
 
 # green: #9ece6a, blue: #64a1f4, red: #f7768e
 cursor-color = #64a1f4
@@ -53,3 +62,8 @@ keybind = super+alt+shift+j=write_screen_file:open
 # To enter newlines with Shift+Enter
 # https://github.com/anthropics/claude-code/issues/1282
 keybind = shift+enter=text:\n
+
+# Command Finished Notifications
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = bell,notify
+notify-on-command-finish-after = 5s
