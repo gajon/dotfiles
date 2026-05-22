@@ -382,5 +382,7 @@ vim.g.neosolarized_italic = 1
 -- Other colorschemes
 -- vim.cmd.colorscheme('blue')
 vim.cmd[[colorscheme tokyonight-moon]]
+-- vim.opt.background = 'light'
+-- vim.cmd.colorscheme('PaperColor')
 
 -- vim: set sw=4 ts=4 et:
