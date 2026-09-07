@@ -139,6 +139,15 @@ chpwd() {
 }
 chpwd
 
+# --- herdr helper -------------------------------------------------------------
+herdr() {
+  if [[ "$1" == "--remote" && "$2" == "breakpoint" ]]; then
+    HERDR_CONFIG_PATH="$HOME/.config/herdr/config.breakpoint.toml" \
+      command herdr "$@"
+  else
+    command herdr "$@"
+  fi
+}
 
 # --- OTHER --------------------------------------------------------------------
 
