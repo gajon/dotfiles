@@ -66,3 +66,5 @@
 	# delta detects terminal colors automatically; set one of these to disable auto-detection
 	# dark = true
 	# light = true
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials
