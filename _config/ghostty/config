@@ -4,15 +4,25 @@
 # To list the themes
 # ghostty +list-themes
 #
+# theme = Black Metal
+# theme = Black Metal (Bathory)
+# theme = Black Metal (Burzum)
+# theme = Black Metal (Dark Funeral)
+# theme = Black Metal (Immortal)
+# theme = Black Metal (Mayhem)
+# theme = Black Metal (Venom)
 # theme = Borland
 # theme = Builtin Solarized Light
 # theme = Everforest Dark Hard
 # theme = GitHub Light Default
 # theme = Gruvbox Dark
+# theme = Nord
+# theme = Retro
 # theme = Solarized Dark Higher Contrast
-# theme = Solarized Osaka Night
-theme = TokyoNight Moon
+# theme = TokyoNight Moon
+theme = TokyoNight Night
 # theme = Whimsy
+
 
 font-size = 19
 font-family = TX-02
@@ -41,6 +51,9 @@ mouse-hide-while-typing = false
 
 # background-opacity = 0.85
 # background-blur-radius = 15
+background-image = ~/.config/ghostty/wallpaper.png
+background-image-opacity = 0.1
+background-image-fit = cover
 
 # Workaround bug https://github.com/ghostty-org/ghostty/discussions/5018
 keybind = ctrl+left_bracket=text:\x1b
