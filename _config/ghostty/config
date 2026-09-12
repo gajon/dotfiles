@@ -55,8 +55,10 @@ background-image = ~/.config/ghostty/wallpaper.png
 background-image-opacity = 0.1
 background-image-fit = cover
 
-# Workaround bug https://github.com/ghostty-org/ghostty/discussions/5018
-keybind = ctrl+left_bracket=text:\x1b
+# https://github.com/ghostty-org/ghostty/discussions/5071
+# Send Ctrl+[ as an unambiguous Kitty-protocol Escape event. A bare ESC byte
+# can be mistaken for the start of Alt+key when the next key arrives quickly.
+keybind = ctrl+left_bracket=text:\x1b[27u
 
 # Quick terminal
 # keybind = global:ctrl+grave_accent=toggle_quick_terminal
