@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+workspace_id=${HERDR_ACTIVE_WORKSPACE_ID:-$HERDR_WORKSPACE_ID}
+tab_id=${HERDR_ACTIVE_TAB_ID:-$HERDR_TAB_ID}
+herdr_bin=${HERDR_BIN_PATH:-herdr}
+
+selection=$(
+  "$herdr_bin" pane list |
+    jq -r --arg workspace "$workspace_id" --arg tab "$tab_id" '
+      .result.panes[]
+      | select(
+          .workspace_id == $workspace
+          and .tab_id != $tab
+        )
+      | [
+          .pane_id,
+          .tab_id,
+          (.agent // "-"),
+          (.terminal_title_stripped // "")
+        ]
+      | @tsv
+    ' |
+    fzf \
+      --delimiter=$'\t' \
+      --with-nth=2.. \
+      --prompt="Pull pane: "
+) || exit
+
+pane_id=${selection%%$'\t'*}
+
+"$herdr_bin" pane move "$pane_id" \
+  --tab "$tab_id" \
+  --split right
+  --focus
