@@ -1,0 +1,21 @@
+#!/bin/sh
+
+PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH
+
+session_id=$1
+window_id=$2
+pane_id=$3
+
+# Target the most recently active attached tmux client.
+client=$(
+  tmux list-clients -F '#{client_activity} #{client_name}' |
+    sort -rn |
+    sed -n '1{s/^[^ ]* //;p;}'
+)
+
+[ -n "$client" ] || exit 1
+
+tmux select-window -t "$window_id" &&
+tmux select-pane -t "$pane_id" &&
+tmux switch-client -c "$client" -t "$session_id"
