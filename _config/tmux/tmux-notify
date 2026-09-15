@@ -13,10 +13,20 @@ window_id=$4
 pane_id=$5
 
 execute="$HOME/.config/tmux/tmux-jump '$session_id' '$window_id' '$pane_id'"
+log_file="/tmp/tmux-notify-${UID}.log"
 
-exec /opt/homebrew/bin/terminal-notifier \
+printf '%s notify pid=%s session=%s window=%s pane=%s title=%s\n' \
+  "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$$" \
+  "$session_id" "$window_id" "$pane_id" "$title" >> "$log_file"
+
+/opt/homebrew/bin/terminal-notifier \
   -title "$title" \
   -message "$message" \
   -sound Glass \
   -group "tmux-${session_id}-${window_id}" \
   -execute "$execute"
+
+result=$?
+printf '%s notifier-exit pid=%s status=%s\n' \
+  "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$$" "$result" >> "$log_file"
+exit "$result"

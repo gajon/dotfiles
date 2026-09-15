@@ -6,6 +6,11 @@ export PATH
 session_id=$1
 window_id=$2
 pane_id=$3
+log_file="/tmp/tmux-notify-${UID}.log"
+
+printf '%s click pid=%s target-session=%s target-window=%s target-pane=%s\n' \
+  "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$$" \
+  "$session_id" "$window_id" "$pane_id" >> "$log_file"
 
 # Target the most recently active attached tmux client.
 client=$(
@@ -16,6 +21,11 @@ client=$(
 
 [ -n "$client" ] || exit 1
 
+tmux switch-client -c "$client" -t "$session_id" &&
 tmux select-window -t "$window_id" &&
-tmux select-pane -t "$pane_id" &&
-tmux switch-client -c "$client" -t "$session_id"
+tmux select-pane -t "$pane_id"
+
+result=$?
+printf '%s jump-exit pid=%s status=%s client=%s\n' \
+  "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$$" "$result" "$client" >> "$log_file"
+exit "$result"
