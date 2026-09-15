@@ -1,0 +1,92 @@
+#!/bin/sh
+
+# Enable this callback with the following top-level setting (outside any
+# [section]) in ~/.codex/config.toml, then restart Codex:
+#
+# notify = ["/Users/gajon/.config/tmux/codex-notify"]
+#
+# Codex appends a JSON event payload as the final argument to this command.
+payload=${1:-}
+PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH
+log_file="/tmp/tmux-notify-${UID}.log"
+
+printf '%s codex-callback pid=%s ppid=%s tmux-pane=%s args=%s\n' \
+  "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$$" "$PPID" \
+  "${TMUX_PANE:-<unset>}" "$#" >> "$log_file"
+
+[ -n "$payload" ] || exit 0
+
+event_type=$(
+  /usr/bin/python3 -c \
+    'import json, sys; print(json.loads(sys.argv[1]).get("type", ""))' \
+    "$payload" 2>/dev/null
+) || exit 0
+
+[ "$event_type" = "agent-turn-complete" ] || exit 0
+
+event_cwd=$(
+  /usr/bin/python3 -c \
+    'import json, sys; print(json.loads(sys.argv[1]).get("cwd", ""))' \
+    "$payload" 2>/dev/null
+) || event_cwd=""
+
+# TMUX_PANE identifies the pane in which this Codex process is running.
+pane_id=${TMUX_PANE:-}
+if [ -z "$pane_id" ]; then
+  # Wrappers may sanitize TMUX_PANE. Recover it from the Codex parent's TTY.
+  parent_tty=$(ps -o tty= -p "$PPID" | tr -d ' ')
+  if [ -n "$parent_tty" ] && [ "$parent_tty" != "??" ]; then
+    pane_id=$(
+      tmux list-panes -a -F '#{pane_tty} #{pane_id}' |
+        awk -v tty="/dev/$parent_tty" '$1 == tty { print $2; exit }'
+    )
+  fi
+fi
+
+# dox-agent deliberately sanitizes TMUX_PANE and prevents process inspection.
+# In that case, match Codex's event cwd to a pane running codex/dox-agent.
+if [ -z "$pane_id" ] && [ -n "$event_cwd" ]; then
+  candidates=$(
+    tmux list-panes -a -F '#{pane_id}|#{pane_current_path}|#{pane_current_command}' |
+      awk -F '|' -v cwd="$event_cwd" \
+        '$2 == cwd && ($3 == "codex" || $3 == "dox-agent") { print $1 }'
+  )
+  if [ "$(printf '%s\n' "$candidates" | awk 'NF { count++ } END { print count + 0 }')" -eq 1 ]; then
+    pane_id=$candidates
+  fi
+fi
+[ -n "$pane_id" ] || {
+  printf '%s codex-callback-exit reason=no-tmux-pane parent-tty=%s cwd=%s candidates=%s\n' \
+    "$(date '+%Y-%m-%dT%H:%M:%S%z')" "${parent_tty:-<unset>}" \
+    "$event_cwd" "${candidates:-<unset>}" >> "$log_file"
+  exit 0
+}
+
+session_id=$(tmux display-message -p -t "$pane_id" '#{session_id}') || exit 0
+session_name=$(tmux display-message -p -t "$pane_id" '#{session_name}') || exit 0
+window_id=$(tmux display-message -p -t "$pane_id" '#{window_id}') || exit 0
+window_index=$(tmux display-message -p -t "$pane_id" '#{window_index}') || exit 0
+window_name=$(tmux display-message -p -t "$pane_id" '#{window_name}') || exit 0
+
+message=$(
+  /usr/bin/python3 -c '
+import json
+import sys
+
+text = json.loads(sys.argv[1]).get("last-assistant-message", "")
+text = " ".join(text.split())
+print(text[:240] if text else "Codex has finished working.")
+' "$payload" 2>/dev/null
+) || message="Codex has finished working."
+
+printf '%s codex-event type=%s session=%s window=%s pane=%s\n' \
+  "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$event_type" \
+  "$session_id" "$window_id" "$pane_id" >> "$log_file"
+
+exec "$HOME/.config/tmux/tmux-notify" \
+  "Codex: ${session_name}:${window_index}" \
+  "$message" \
+  "$session_id" \
+  "$window_id" \
+  "$pane_id"
